@@ -1,0 +1,444 @@
+<main
+  class="relative min-h-dvh bg-gray-50 text-gray-900 lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] dark:bg-dark-900 dark:text-gray-100 [&_:is(button,a,label)]:touch-manipulation"
+>
+  <!-- Fondo decorativo (solo PC) -->
+  <div
+    class="desktop-bg pointer-events-none absolute inset-0 hidden overflow-hidden lg:block"
+    aria-hidden="true"
+  >
+    <!-- Grid solo en la mitad de marca -->
+    <div class="desktop-grid absolute inset-y-0 left-0 w-[55%]"></div>
+
+    <!-- Anillos atrás del formulario -->
+    <div
+      class="absolute -bottom-48 -right-48 size-[44rem] rounded-full border border-secondary-500/20 dark:border-accent-400/15"
+    ></div>
+    <div
+      class="absolute -bottom-24 -right-24 size-[30rem] rounded-full border border-secondary-500/25 dark:border-accent-400/20"
+    ></div>
+
+    <!-- Orbe arriba derecha -->
+    <div
+      class="absolute -top-24 right-[12%] size-72 rounded-full bg-secondary-300/40 blur-3xl dark:bg-accent-500/20"
+    ></div>
+  </div>
+
+  <!-- ============================================================
+         PANEL DE MARCA (solo desktop / tablet horizontal)
+    ============================================================ -->
+  <aside class="relative hidden flex-col justify-between p-12 text-white lg:flex xl:p-16">
+    <div class="relative flex items-center gap-3">
+      <img [src]="assets.logos.login.desktop" alt="CheckGuard" class="h-30 w-70 object-contain" />
+    </div>
+
+    <div class="relative max-w-md text-black dark:text-white">
+      <h2 class="font-display text-4xl font-semibold leading-tight xl:text-5xl">
+        Cada ronda,<br />
+        <span class="text-secondary-400 dark:text-accent-300">bajo control.</span>
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-black dark:text-white xl:text-lg">
+        Supervisa las rondas de vigilancia en tiempo real, valida cada punto de control y mantén a
+        tu equipo conectado.
+      </p>
+
+      <ul class="mt-10 space-y-4 text-sm xl:text-base">
+        @for (
+          feature of [
+            'Escaneo de puntos con código QR',
+            'Acceso seguro con tu huella o patrón',
+            'Reportes y evidencia de cada recorrido',
+          ];
+          track feature
+        ) {
+          <li class="flex items-center gap-3">
+            <span
+              class="grid size-6 shrink-0 place-items-center rounded-full border border-secondary-500/35 dark:border-accent-500 dark:bg-accent-500/20 bg-accent-500/30 dark:text-accent-200 text-secondary-500"
+            >
+              <mat-icon
+                [svgIcon]="'heroicons_outline:check'"
+                class="!h-4 !w-4"
+                aria-hidden="true"
+              ></mat-icon>
+            </span>
+            {{ feature }}
+          </li>
+        }
+      </ul>
+    </div>
+
+    <p class="relative text-xs text-black dark:text-white">
+      © {{ currentYear }} {{ appName }}. Todos los derechos reservados.
+    </p>
+  </aside>
+
+  <!-- ============================================================
+         PANEL DEL FORMULARIO
+    ============================================================ -->
+  <section
+    class="login-shell relative flex min-h-screen min-h-dvh items-start justify-center overflow-x-clip px-4 pt-20 [-webkit-text-size-adjust:100%] sm:px-8 lg:items-center lg:px-12 lg:py-12 max-sm:items-center max-sm:pt-[max(1.5rem,calc(env(safe-area-inset-top)+1rem))] max-sm:pb-[max(1.5rem,calc(env(safe-area-inset-bottom)+1rem))] max-sm:pl-[max(1rem,env(safe-area-inset-left))] max-sm:pr-[max(1rem,env(safe-area-inset-right))] max-[359.98px]:pl-[max(0.75rem,env(safe-area-inset-left))] max-[359.98px]:pr-[max(0.75rem,env(safe-area-inset-right))]"
+  >
+    <!-- Fondo decorativo móvil -->
+    <div
+      class="mobile-glow pointer-events-none absolute inset-0 lg:hidden"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative w-full max-w-md">
+      <!-- Logo móvil -->
+      <div
+        class="login-logo-wrap mb-10 flex items-center justify-center gap-3 lg:hidden max-sm:mb-[clamp(1rem,3.5dvh,2.5rem)]"
+      >
+        <img
+          [src]="assets.logos.login.mobile"
+          alt="CheckGuard"
+          class="login-logo size-40 object-contain max-sm:size-[clamp(5.5rem,min(36vw,18dvh),10rem)] max-[299.98px]:size-[5.5rem]"
+        />
+      </div>
+
+      <!-- Formulario -->
+      <div
+        class="rounded-xl3 border border-gray-200/80 p-6 shadow-xl shadow-primary-900/5 sm:p-8 dark:border-white/10 bg-card dark:shadow-card max-sm:p-[clamp(1.125rem,5vw,1.5rem)]"
+      >
+        <header class="mb-6 text-center sm:text-left max-sm:mb-[clamp(1rem,2.6dvh,1.5rem)]">
+          <h1
+            class="font-display text-2xl font-semibold tracking-tight sm:text-3xl max-sm:text-[clamp(1.375rem,6.2vw,1.5rem)] max-sm:leading-[1.2]"
+          >
+            Bienvenido de vuelta
+          </h1>
+          <p class="mt-1.5 text-sm text-black dark:text-white">
+            Elige cómo quieres iniciar tu turno.
+          </p>
+        </header>
+
+        <!-- ALERTA -->
+        @if (showAlert) {
+          <div
+            role="alert"
+            class="alert-in mb-5 flex items-start gap-3 rounded-xl border border-danger-200 bg-danger-50 p-3.5 text-sm text-danger-800 dark:border-danger-500/30 dark:bg-danger-500/10 dark:text-danger-300"
+          >
+            <mat-icon
+              [svgIcon]="'heroicons_outline:exclamation-circle'"
+              class="mt-0.5 !h-5 !w-5 shrink-0"
+              aria-hidden="true"
+            ></mat-icon>
+            <p class="min-w-0 flex-1 break-words">{{ alertMessage }}</p>
+            <button
+              type="button"
+              (click)="showAlert = false"
+              class="-m-1 rounded p-1 opacity-70 hover:opacity-100"
+              aria-label="Cerrar aviso"
+            >
+              <mat-icon
+                [svgIcon]="'heroicons_outline:x-mark'"
+                class="!h-4 !w-4"
+                aria-hidden="true"
+              ></mat-icon>
+            </button>
+          </div>
+        }
+
+        <!-- SELECTOR DE MÉTODO -->
+        <div
+          role="tablist"
+          aria-label="Método de acceso"
+          class="mb-6 grid grid-cols-2 gap-1 rounded-2xl bg-gray-100 p-1 dark:bg-dark-800 max-sm:mb-[clamp(1rem,2.6dvh,1.5rem)]"
+        >
+          @for (m of methods; track m.id) {
+            <button
+              type="button"
+              role="tab"
+              [attr.aria-selected]="method === m.id"
+              (click)="setMethod(m.id)"
+              class="flex min-h-14 min-w-0 flex-col items-center justify-center gap-1 rounded-[0.9rem] text-xs font-medium text-gray-500 transition hover:text-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 aria-selected:bg-white aria-selected:text-primary-700 aria-selected:shadow-[0_1px_3px_rgba(0,0,0,0.1),0_4px_12px_-4px_rgba(16,135,82,0.25)] dark:text-gray-400 dark:hover:text-gray-100 dark:aria-selected:bg-gray-600 dark:aria-selected:text-white dark:aria-selected:shadow-[0_1px_2px_rgba(0,0,0,0.5)] [&_.mat-icon]:!text-current max-[359.98px]:min-h-[3.25rem] max-[359.98px]:rounded-xl max-[359.98px]:text-[0.7rem] max-[299.98px]:text-[0.65rem]"
+            >
+              <mat-icon [svgIcon]="m.icon"></mat-icon>
+              <span>{{ m.label }}</span>
+            </button>
+          }
+        </div>
+
+        <!-- ====================== CLAVE ====================== -->
+        @if (method === 'password') {
+          <form
+            [formGroup]="signInForm"
+            (ngSubmit)="signIn()"
+            class="panel-in space-y-5 max-sm:space-y-[clamp(0.875rem,2.3dvh,1.5rem)] max-[359.98px]:space-y-4"
+            novalidate
+          >
+            <!-- Email -->
+            <div>
+              <label for="email" class="mb-1.5 block text-sm font-medium">Correo electrónico</label>
+              <div class="relative">
+                <span
+                  class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-[0.9rem] text-gray-400"
+                  aria-hidden="true"
+                >
+                  <mat-icon
+                    [svgIcon]="'heroicons_outline:envelope'"
+                    class="!h-5 !w-5"
+                    aria-hidden="true"
+                  ></mat-icon>
+                </span>
+                <input
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  autocomplete="username"
+                  inputmode="email"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  placeholder="guardia@empresa.com"
+                  [attr.aria-invalid]="
+                    signInForm.controls.email.touched && signInForm.controls.email.invalid
+                  "
+                  class="h-12 w-full rounded-[0.9rem] border border-gray-200 bg-gray-50 pl-11 pr-4 text-base text-gray-900 transition placeholder:text-gray-400 hover:border-gray-300 focus:border-primary-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary-500/15 dark:border-white/10 dark:bg-dark-800 dark:text-gray-100 dark:placeholder:text-gray-500 dark:hover:border-white/20 dark:focus:border-accent-500 dark:focus:bg-dark-900 dark:focus:ring-accent-500/20 aria-[invalid=true]:!border-danger-500 aria-[invalid=true]:focus:!ring-danger-500/15"
+                />
+              </div>
+              @if (signInForm.controls.email.touched && signInForm.controls.email.invalid) {
+                <p class="mt-1.5 text-xs text-danger-600 dark:text-danger-400">
+                  @if (signInForm.controls.email.hasError('required')) {
+                    Ingresa tu correo.
+                  } @else {
+                    Escribe un correo válido.
+                  }
+                </p>
+              }
+            </div>
+
+            <!-- Password -->
+            <div>
+              <label for="password" class="mb-1.5 block text-sm font-medium">Contraseña</label>
+              <div class="relative">
+                <span
+                  class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-[0.9rem] text-gray-400"
+                  aria-hidden="true"
+                >
+                  <mat-icon [svgIcon]="'heroicons_outline:lock-open'" class="!h-5 !w-5"></mat-icon>
+                </span>
+                <input
+                  id="password"
+                  [type]="showPassword ? 'text' : 'password'"
+                  formControlName="password"
+                  autocomplete="current-password"
+                  placeholder="••••••••"
+                  [attr.aria-invalid]="
+                    signInForm.controls.password.touched && signInForm.controls.password.invalid
+                  "
+                  class="h-12 w-full rounded-[0.9rem] border border-gray-200 bg-gray-50 pl-11 pr-12 text-base text-gray-900 transition placeholder:text-gray-400 hover:border-gray-300 focus:border-primary-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary-500/15 dark:border-white/10 dark:bg-dark-800 dark:text-gray-100 dark:placeholder:text-gray-500 dark:hover:border-white/20 dark:focus:border-accent-500 dark:focus:bg-dark-900 dark:focus:ring-accent-500/20 aria-[invalid=true]:!border-danger-500 aria-[invalid=true]:focus:!ring-danger-500/15"
+                />
+                <button
+                  type="button"
+                  (click)="showPassword = !showPassword"
+                  class="absolute inset-y-0 right-0 flex w-12 items-center justify-center rounded-r-xl text-gray-400 transition hover:text-gray-600 dark:hover:text-gray-200"
+                  [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+                  [attr.aria-pressed]="showPassword"
+                >
+                  @if (showPassword) {
+                    <mat-icon
+                      [svgIcon]="'heroicons_outline:eye-slash'"
+                      class="!h-5 !w-5"
+                      aria-hidden="true"
+                    ></mat-icon>
+                  } @else {
+                    <mat-icon
+                      [svgIcon]="'heroicons_outline:eye'"
+                      class="!h-5 !w-5"
+                      aria-hidden="true"
+                    ></mat-icon>
+                  }
+                </button>
+              </div>
+              @if (signInForm.controls.password.touched && signInForm.controls.password.invalid) {
+                <p class="mt-1.5 text-xs text-danger-600 dark:text-danger-400">
+                  Ingresa tu contraseña.
+                </p>
+              }
+            </div>
+
+            <!-- Recordarme / olvidé -->
+            <div
+              class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 max-[359.98px]:flex-col max-[359.98px]:items-start max-[359.98px]:gap-1"
+            >
+              <label class="flex cursor-pointer select-none items-center gap-2.5 text-sm">
+                <input
+                  type="checkbox"
+                  formControlName="rememberMe"
+                  class="size-5 cursor-pointer rounded-md accent-primary-500"
+                />
+                Mantener sesión
+              </label>
+              <a
+                routerLink="/forgot-password"
+                class="text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-accent-400 dark:hover:text-accent-300 max-sm:inline-flex max-sm:min-h-11 max-sm:items-center"
+              >
+                ¿Olvidaste tu contraseña?
+              </a>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              [disabled]="loading"
+              class="inline-flex h-12 w-full items-center justify-center gap-2 rounded-[0.9rem] bg-gradient-to-br from-primary-500 to-primary-600 px-5 text-[0.95rem] font-semibold text-white transition shadow-[0_10px_24px_-10px_rgba(16,135,82,0.7),inset_0_1px_0_rgba(255,255,255,0.18)] hover:enabled:brightness-[1.07] active:enabled:translate-y-px active:enabled:scale-[0.99] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-accent-500/50 disabled:cursor-not-allowed disabled:opacity-[0.65]"
+            >
+              @if (loading) {
+                <mat-icon
+                  [svgIcon]="'heroicons_outline:arrow-path'"
+                  class="!h-5 !w-5 animate-spin"
+                  aria-hidden="true"
+                ></mat-icon>
+                Ingresando…
+              } @else {
+                Iniciar sesión
+              }
+            </button>
+          </form>
+        }
+
+        <!-- ====================== HUELLA ====================== -->
+        @if (method === 'biometric') {
+          <div class="panel-in flex flex-col items-center text-center">
+            <button
+              type="button"
+              (click)="signInWithBiometric()"
+              [disabled]="loading || !biometricSupported"
+              class="bio-btn group relative grid size-40 place-items-center rounded-full [-webkit-tap-highlight-color:transparent] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-accent-500/50 disabled:cursor-not-allowed disabled:opacity-50 max-sm:size-[clamp(8rem,42vw,10rem)]"
+              [class.bio-btn--busy]="loading"
+              aria-label="Desbloquear con huella o patrón del teléfono"
+            >
+              <span
+                class="bio-ring absolute inset-[0.9rem] rounded-full border-2 border-accent-500 opacity-0"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="bio-ring bio-ring--2 absolute inset-[0.9rem] rounded-full border-2 border-accent-500 opacity-0"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="bio-core relative z-[1] grid size-[6.5rem] place-items-center rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white transition-transform shadow-[0_14px_34px_-10px_rgba(32,201,166,0.7)] group-[:active:not(:disabled)]:scale-95 max-sm:size-[clamp(5.25rem,27vw,6.5rem)]"
+              >
+                <mat-icon
+                  [svgIcon]="'heroicons_outline:finger-print'"
+                  class="!h-12 !w-12"
+                ></mat-icon>
+              </span>
+            </button>
+
+            <h2 class="mt-6 font-display text-lg font-semibold text-black dark:text-white">
+              Desbloquea con tu dispositivo
+            </h2>
+            <p class="mt-1.5 max-w-xs text-sm text-black dark:text-white">
+              @if (biometricSupported) {
+                Usa tu huella, rostro o patrón. Solo funciona en el teléfono donde configuraste tu
+                acceso.
+              } @else {
+                Este dispositivo no tiene huella o bloqueo de pantalla disponible para el navegador.
+              }
+            </p>
+
+            <p
+              class="mt-5 flex items-center gap-2 rounded-full bg-primary-50 px-3.5 py-1.5 text-xs font-medium text-primary-700 dark:bg-primary-500/10 dark:text-primary-300 max-sm:max-w-full max-sm:text-left"
+            >
+              <mat-icon
+                [svgIcon]="'heroicons_outline:shield-check'"
+                class="!h-4 !w-4 shrink-0"
+                aria-hidden="true"
+              ></mat-icon>
+              Tus datos biométricos nunca salen del teléfono
+            </p>
+          </div>
+        }
+
+        <!-- ====================== QR ====================== -->
+        <!-- <div
+          [class.hidden]="method !== 'qr'"
+          class="panel-in flex flex-col items-center text-center"
+        >
+          <div
+            class="scanner relative aspect-square w-full max-w-[17.5rem] overflow-hidden rounded-3xl bg-dark-800 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] max-sm:max-w-[min(17.5rem,100%,48dvh)]"
+          >
+            <video #video class="size-full object-cover" playsinline muted></video>
+
+            @if (!cameraActive) {
+              <div
+                class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-dark-800 text-gray-400"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="size-10"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"
+                  />
+                  <path d="M3 12h18" />
+                </svg>
+                <span class="text-xs">Cámara apagada</span>
+              </div>
+            }
+
+      
+            <span
+              class="pointer-events-none absolute left-4 top-4 size-9 rounded-tl-[0.9rem] border-[3px] border-b-0 border-r-0 border-accent-400 max-[359.98px]:left-3 max-[359.98px]:top-3 max-[359.98px]:size-7"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="pointer-events-none absolute right-4 top-4 size-9 rounded-tr-[0.9rem] border-[3px] border-b-0 border-l-0 border-accent-400 max-[359.98px]:right-3 max-[359.98px]:top-3 max-[359.98px]:size-7"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="pointer-events-none absolute bottom-4 left-4 size-9 rounded-bl-[0.9rem] border-[3px] border-r-0 border-t-0 border-accent-400 max-[359.98px]:bottom-3 max-[359.98px]:left-3 max-[359.98px]:size-7"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="pointer-events-none absolute bottom-4 right-4 size-9 rounded-br-[0.9rem] border-[3px] border-l-0 border-t-0 border-accent-400 max-[359.98px]:bottom-3 max-[359.98px]:right-3 max-[359.98px]:size-7"
+              aria-hidden="true"
+            ></span>
+
+            @if (cameraActive) {
+              <span
+                class="scanner-line absolute inset-x-5 h-0.5 rounded-full bg-gradient-to-r from-transparent via-accent-400 to-transparent shadow-[0_0_14px_2px_rgba(32,201,166,0.7)]"
+                aria-hidden="true"
+              ></span>
+            }
+          </div>
+
+          <h2 class="mt-5 font-display text-lg font-semibold">Escanea tu gafete</h2>
+          <p class="mt-1.5 max-w-xs text-sm text-gray-500 dark:text-gray-400">
+            Apunta la cámara al código QR de tu credencial para entrar.
+          </p>
+
+          @if (!cameraActive) {
+            <button
+              type="button"
+              (click)="startQrScan()"
+              class="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[0.9rem] bg-gradient-to-br from-primary-500 to-primary-600 px-5 text-[0.95rem] font-semibold text-white transition
+                shadow-[0_10px_24px_-10px_rgba(16,135,82,0.7),inset_0_1px_0_rgba(255,255,255,0.18)]
+                hover:brightness-[1.07] active:translate-y-px active:scale-[0.99]
+                focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-accent-500/50"
+            >
+              Activar cámara
+            </button>
+          } @else {
+            <button
+              type="button"
+              (click)="stopQrScan()"
+              class="mt-5 inline-flex h-11 items-center justify-center rounded-[0.9rem] border border-gray-200 px-6 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:border-white/10 dark:text-gray-300 dark:hover:bg-white/5"
+            >
+              Cancelar
+            </button>
+          }
+        </div> -->
+      </div>
+
+      <p class="mt-6 text-center text-xs text-black dark:text-white">
+        ¿Problemas para entrar? Contacta a tu supervisor.
+      </p>
+    </div>
+  </section>
+</main>

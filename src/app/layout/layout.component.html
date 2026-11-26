@@ -1,0 +1,61 @@
+<div
+    class="flex h-dvh w-full flex-col overflow-hidden bg-white text-gray-900 dark:bg-dark-900 dark:text-gray-100"
+>
+    <!-- ================= BARRA SUPERIOR ================= -->
+    <header
+        class="flex h-14 shrink-0 items-center gap-3 border-b border-black/10 px-4 dark:border-white/10"
+    >
+        <button
+            type="button"
+            class="rounded-lg p-2 hover:bg-black/5 dark:hover:bg-white/10"
+            aria-label="Mostrar u ocultar menú"
+            (click)="toggleSidebar()"
+        >
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <span class="text-lg font-bold tracking-tight">VIGIX</span>
+
+        <!-- Espacio central (buscador, título de la vista, etc.) -->
+        <div class="flex-1"></div>
+
+        <!-- Zona derecha (notificaciones, perfil, etc.) -->
+        <div class="flex items-center gap-2"></div>
+    </header>
+
+    <!-- ================= CUERPO ================= -->
+    <div class="relative flex min-h-0 flex-1">
+        <!-- Fondo oscuro para móvil cuando el menú está abierto -->
+        @if (sidebarOpen()) {
+            <div
+                class="absolute inset-0 z-20 bg-black/40 lg:hidden"
+                (click)="closeSidebar()"
+            ></div>
+        }
+
+        <!-- Menú lateral izquierdo -->
+        <aside
+            class="absolute inset-y-0 left-0 z-30 w-64 shrink-0 overflow-y-auto border-r border-black/10 bg-white transition-transform duration-200 dark:border-white/10 dark:bg-dark-900 lg:static"
+            [class.-translate-x-full]="!sidebarOpen()"
+            [class.lg:hidden]="!sidebarOpen()"
+        >
+            <!-- Aquí va el menú: <app-sidebar /> -->
+            <div class="p-4 text-sm opacity-50">Menú lateral</div>
+        </aside>
+
+        <!-- Contenido de cada vista -->
+        <main class="min-w-0 flex-1 overflow-y-auto">
+            <router-outlet />
+        </main>
+    </div>
+
+    <!-- ================= BARRA INFERIOR ================= -->
+    <footer
+        class="flex h-10 shrink-0 items-center justify-between border-t border-black/10 px-4 text-xs opacity-70 dark:border-white/10"
+    >
+        <span>© {{ currentYear }} VIGIX</span>
+        <span></span>
+    </footer>
+</div>

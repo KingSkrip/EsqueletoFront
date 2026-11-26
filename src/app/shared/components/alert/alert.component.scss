@@ -1,0 +1,1491 @@
+// app-alert {
+//     display: block;
+
+//     /* Common */
+//     .app-alert-container {
+//         position: relative;
+//         display: flex;
+//         padding: 16px;
+//         font-size: 14px;
+//         line-height: 1;
+
+//         /* All icons */
+//         .mat-icon {
+//             color: currentColor !important;
+//         }
+
+//         /* Icon */
+//         .app-alert-icon {
+//             display: flex;
+//             align-items: flex-start;
+
+//             .app-alert-custom-icon,
+//             .app-alert-default-icon {
+//                 display: none;
+//                 align-items: center;
+//                 justify-content: center;
+//                 border-radius: 50%;
+
+//                 &:not(:empty) {
+//                     display: flex;
+//                     margin-right: 12px;
+//                 }
+//             }
+
+//             .app-alert-default-icon {
+//                 .mat-icon {
+//                     @apply icon-size-5;
+//                 }
+//             }
+
+//             .app-alert-custom-icon {
+//                 display: none;
+
+//                 &:not(:empty) {
+//                     display: flex;
+
+//                     + .app-alert-default-icon {
+//                         display: none;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Content */
+//         .app-alert-content {
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: center;
+//             line-height: 1;
+
+//             /* Title */
+//             .app-alert-title {
+//                 display: none;
+//                 font-weight: 600;
+//                 line-height: 20px;
+
+//                 &:not(:empty) {
+//                     display: block;
+
+//                     /* Alert that comes after the title */
+//                     + .app-alert-message {
+//                         &:not(:empty) {
+//                             margin-top: 4px;
+//                         }
+//                     }
+//                 }
+//             }
+
+//             /* Alert */
+//             .app-alert-message {
+//                 display: none;
+//                 line-height: 20px;
+
+//                 &:not(:empty) {
+//                     display: block;
+//                 }
+//             }
+//         }
+
+//         /* Dismiss button */
+//         .app-alert-dismiss-button {
+//             position: absolute;
+//             top: 10px;
+//             right: 10px;
+//             width: 32px !important;
+//             min-width: 32px !important;
+//             height: 32px !important;
+//             min-height: 32px !important;
+//             line-height: 32px !important;
+
+//             .mat-icon {
+//                 @apply icon-size-4;
+//             }
+//         }
+//     }
+
+//     /* Dismissible */
+//     &.app-alert-dismissible {
+//         .app-alert-container {
+//             .app-alert-content {
+//                 margin-right: 32px;
+//             }
+//         }
+//     }
+
+//     &:not(.app-alert-dismissible) {
+//         .app-alert-container {
+//             .app-alert-dismiss-button {
+//                 display: none !important;
+//             }
+//         }
+//     }
+
+//     /* Border */
+//     &.app-alert-appearance-border {
+//         .app-alert-container {
+//             position: relative;
+//             overflow: hidden;
+//             border-radius: 6px;
+//             @apply bg-card shadow-md;
+
+//             .app-alert-border {
+//                 position: absolute;
+//                 left: 0;
+//                 top: 0;
+//                 bottom: 0;
+//                 width: 4px;
+//             }
+
+//             .app-alert-message {
+//                 @apply text-gray-600;
+//             }
+//         }
+
+//         /* Primary */
+//         &.app-alert-type-primary {
+//             .app-alert-container {
+//                 .app-alert-border {
+//                     @apply bg-primary;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-icon {
+//                     @apply text-primary;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-700;
+
+//                     .app-alert-border {
+//                         @apply bg-primary-400;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-icon {
+//                         @apply text-primary-400;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-300;
+//                     }
+
+//                     code {
+//                         @apply bg-gray-400 text-gray-800;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Accent */
+//         &.app-alert-type-accent {
+//             .app-alert-container {
+//                 .app-alert-border {
+//                     @apply bg-accent;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-icon {
+//                     @apply text-accent;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-700;
+
+//                     .app-alert-border {
+//                         @apply bg-accent-400;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-icon {
+//                         @apply text-accent-400;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-300;
+//                     }
+
+//                     code {
+//                         @apply bg-gray-400 text-gray-800;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Warn */
+//         &.app-alert-type-warn {
+//             .app-alert-container {
+//                 .app-alert-border {
+//                     @apply bg-warn;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-icon {
+//                     @apply text-warn;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-700;
+
+//                     .app-alert-border {
+//                         @apply bg-warn-400;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-icon {
+//                         @apply text-warn-400;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-300;
+//                     }
+
+//                     code {
+//                         @apply bg-gray-400 text-gray-800;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Basic */
+//         &.app-alert-type-basic {
+//             .app-alert-container {
+//                 .app-alert-border {
+//                     @apply bg-gray-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-icon {
+//                     @apply text-gray-600;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-700;
+
+//                     .app-alert-border {
+//                         @apply bg-gray-400;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-icon {
+//                         @apply text-gray-400;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-300;
+//                     }
+
+//                     code {
+//                         @apply bg-gray-400 text-gray-800;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Info */
+//         &.app-alert-type-info {
+//             .app-alert-container {
+//                 .app-alert-border {
+//                     @apply bg-blue-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-icon {
+//                     @apply text-blue-700;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-700;
+
+//                     .app-alert-border {
+//                         @apply bg-blue-400;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-icon {
+//                         @apply text-blue-400;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-300;
+//                     }
+
+//                     code {
+//                         @apply bg-gray-400 text-gray-800;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Success */
+//         &.app-alert-type-success {
+//             .app-alert-container {
+//                 .app-alert-border {
+//                     @apply bg-green-500;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-icon {
+//                     @apply text-green-500;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-700;
+
+//                     .app-alert-border {
+//                         @apply bg-green-400;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-icon {
+//                         @apply text-green-400;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-300;
+//                     }
+
+//                     code {
+//                         @apply bg-gray-400 text-gray-800;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Warning */
+//         &.app-alert-type-warning {
+//             .app-alert-container {
+//                 .app-alert-border {
+//                     @apply bg-amber-500;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-icon {
+//                     @apply text-amber-500;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-700;
+
+//                     .app-alert-border {
+//                         @apply bg-amber-400;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-icon {
+//                         @apply text-amber-400;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-300;
+//                     }
+
+//                     code {
+//                         @apply bg-gray-400 text-gray-800;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Error */
+//         &.app-alert-type-error {
+//             .app-alert-container {
+//                 .app-alert-border {
+//                     @apply bg-red-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-icon {
+//                     @apply text-red-700;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-700;
+
+//                     .app-alert-border {
+//                         @apply bg-red-400;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-icon {
+//                         @apply text-red-400;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-300;
+//                     }
+
+//                     code {
+//                         @apply bg-gray-400 text-gray-800;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     /* Fill */
+//     &.app-alert-appearance-fill {
+//         .app-alert-container {
+//             border-radius: 6px;
+
+//             .app-alert-dismiss-button {
+//                 @apply text-white;
+//             }
+//         }
+
+//         /* Primary */
+//         &.app-alert-type-primary {
+//             .app-alert-container {
+//                 @apply bg-primary-600;
+
+//                 .app-alert-icon {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-title {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-primary-100;
+//                 }
+
+//                 code {
+//                     @apply bg-primary-200 text-primary-800;
+//                 }
+//             }
+//         }
+
+//         /* Accent */
+//         &.app-alert-type-accent {
+//             .app-alert-container {
+//                 @apply bg-accent-600;
+
+//                 .app-alert-icon {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-title {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-accent-100;
+//                 }
+
+//                 code {
+//                     @apply bg-accent-200 text-accent-800;
+//                 }
+//             }
+//         }
+
+//         /* Warn */
+//         &.app-alert-type-warn {
+//             .app-alert-container {
+//                 @apply bg-warn-600;
+
+//                 .app-alert-icon {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-title {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-warn-100;
+//                 }
+
+//                 code {
+//                     @apply bg-warn-200 text-warn-800;
+//                 }
+//             }
+//         }
+
+//         /* Basic */
+//         &.app-alert-type-basic {
+//             .app-alert-container {
+//                 @apply bg-gray-600;
+
+//                 .app-alert-icon {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-title {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-gray-100;
+//                 }
+
+//                 code {
+//                     @apply bg-gray-200 text-gray-800;
+//                 }
+//             }
+//         }
+
+//         /* Info */
+//         &.app-alert-type-info {
+//             .app-alert-container {
+//                 @apply bg-blue-600;
+
+//                 .app-alert-icon {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-title {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-blue-100;
+//                 }
+
+//                 code {
+//                     @apply bg-blue-200 text-blue-800;
+//                 }
+//             }
+//         }
+
+//         /* Success */
+//         &.app-alert-type-success {
+//             .app-alert-container {
+//                 @apply bg-green-600;
+
+//                 .app-alert-icon {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-title {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-green-100;
+//                 }
+
+//                 code {
+//                     @apply bg-green-200 text-gray-800;
+//                 }
+//             }
+//         }
+
+//         /* Warning */
+//         &.app-alert-type-warning {
+//             .app-alert-container {
+//                 @apply bg-amber-500;
+
+//                 .app-alert-icon {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-title {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-amber-100;
+//                 }
+
+//                 code {
+//                     @apply bg-amber-200 text-amber-800;
+//                 }
+//             }
+//         }
+
+//         /* Error */
+//         &.app-alert-type-error {
+//             .app-alert-container {
+//                 @apply bg-red-600;
+
+//                 .app-alert-icon {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-title {
+//                     @apply text-white;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-red-100;
+//                 }
+
+//                 code {
+//                     @apply bg-red-200 text-red-800;
+//                 }
+//             }
+//         }
+//     }
+
+//     /* Outline */
+//     &.app-alert-appearance-outline {
+//         .app-alert-container {
+//             border-radius: 6px;
+//         }
+
+//         /* Primary */
+//         &.app-alert-type-primary {
+//             .app-alert-container {
+//                 @apply bg-primary-50 ring-1 ring-inset ring-primary-400;
+
+//                 .app-alert-icon {
+//                     @apply text-primary-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-primary-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-primary-700;
+//                 }
+
+//                 code {
+//                     @apply bg-primary-200 text-primary-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-primary-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-primary-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Accent */
+//         &.app-alert-type-accent {
+//             .app-alert-container {
+//                 @apply bg-accent-100 ring-1 ring-inset ring-accent-400;
+
+//                 .app-alert-icon {
+//                     @apply text-accent-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-accent-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-accent-700;
+//                 }
+
+//                 code {
+//                     @apply bg-accent-200 text-accent-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-accent-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-accent-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Warn */
+//         &.app-alert-type-warn {
+//             .app-alert-container {
+//                 @apply bg-warn-50 ring-1 ring-inset ring-warn-400;
+
+//                 .app-alert-icon {
+//                     @apply text-warn-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-warn-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-warn-700;
+//                 }
+
+//                 code {
+//                     @apply bg-warn-200 text-warn-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-warn-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-warn-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Basic */
+//         &.app-alert-type-basic {
+//             .app-alert-container {
+//                 @apply bg-gray-100 ring-1 ring-inset ring-gray-400;
+
+//                 .app-alert-icon {
+//                     @apply text-gray-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-gray-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-gray-700;
+//                 }
+
+//                 code {
+//                     @apply bg-gray-200 text-gray-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Info */
+//         &.app-alert-type-info {
+//             .app-alert-container {
+//                 @apply bg-blue-50 ring-1 ring-inset ring-blue-400;
+
+//                 .app-alert-icon {
+//                     @apply text-blue-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-blue-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-blue-700;
+//                 }
+
+//                 code {
+//                     @apply bg-blue-200 text-blue-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-blue-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-blue-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Success */
+//         &.app-alert-type-success {
+//             .app-alert-container {
+//                 @apply bg-green-50 ring-1 ring-inset ring-green-400;
+
+//                 .app-alert-icon {
+//                     @apply text-green-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-green-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-green-700;
+//                 }
+
+//                 code {
+//                     @apply bg-green-200 text-green-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-green-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-green-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Warning */
+//         &.app-alert-type-warning {
+//             .app-alert-container {
+//                 @apply bg-amber-50 ring-1 ring-inset ring-amber-400;
+
+//                 .app-alert-icon {
+//                     @apply text-amber-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-amber-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-amber-700;
+//                 }
+
+//                 code {
+//                     @apply bg-amber-200 text-amber-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-amber-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-amber-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Error */
+//         &.app-alert-type-error {
+//             .app-alert-container {
+//                 @apply bg-red-50 ring-1 ring-inset ring-red-400;
+
+//                 .app-alert-icon {
+//                     @apply text-red-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-red-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-red-700;
+//                 }
+
+//                 code {
+//                     @apply bg-red-200 text-red-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-red-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-red-200;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     /* Soft */
+//     &.app-alert-appearance-soft {
+//         .app-alert-container {
+//             border-radius: 6px;
+//         }
+
+//         /* Primary */
+//         &.app-alert-type-primary {
+//             .app-alert-container {
+//                 @apply bg-primary-50;
+
+//                 .app-alert-icon {
+//                     @apply text-primary-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-primary-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-primary-700;
+//                 }
+
+//                 code {
+//                     @apply bg-primary-200 text-primary-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-primary-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-primary-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Accent */
+//         &.app-alert-type-accent {
+//             .app-alert-container {
+//                 @apply bg-accent-100;
+
+//                 .app-alert-icon {
+//                     @apply text-accent-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-accent-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-accent-700;
+//                 }
+
+//                 code {
+//                     @apply bg-accent-200 text-accent-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-accent-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-accent-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Warn */
+//         &.app-alert-type-warn {
+//             .app-alert-container {
+//                 @apply bg-warn-50;
+
+//                 .app-alert-icon {
+//                     @apply text-warn-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-warn-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-warn-700;
+//                 }
+
+//                 code {
+//                     @apply bg-warn-200 text-warn-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-warn-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-warn-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Basic */
+//         &.app-alert-type-basic {
+//             .app-alert-container {
+//                 @apply bg-gray-100;
+
+//                 .app-alert-icon {
+//                     @apply text-gray-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-gray-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-gray-700;
+//                 }
+
+//                 code {
+//                     @apply bg-gray-200 text-gray-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-gray-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-gray-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Info */
+//         &.app-alert-type-info {
+//             .app-alert-container {
+//                 @apply bg-blue-50;
+
+//                 .app-alert-icon {
+//                     @apply text-blue-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-blue-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-blue-700;
+//                 }
+
+//                 code {
+//                     @apply bg-blue-200 text-blue-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-blue-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-blue-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Success */
+//         &.app-alert-type-success {
+//             .app-alert-container {
+//                 @apply bg-green-50;
+
+//                 .app-alert-icon {
+//                     @apply text-green-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-green-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-green-700;
+//                 }
+
+//                 code {
+//                     @apply bg-green-200 text-green-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-green-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-green-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Warning */
+//         &.app-alert-type-warning {
+//             .app-alert-container {
+//                 @apply bg-amber-50;
+
+//                 .app-alert-icon {
+//                     @apply text-amber-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-amber-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-amber-700;
+//                 }
+
+//                 code {
+//                     @apply bg-amber-200 text-amber-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-amber-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-amber-200;
+//                     }
+//                 }
+//             }
+//         }
+
+//         /* Error */
+//         &.app-alert-type-error {
+//             .app-alert-container {
+//                 @apply bg-red-50;
+
+//                 .app-alert-icon {
+//                     @apply text-red-600;
+//                 }
+
+//                 .app-alert-title,
+//                 .app-alert-dismiss-button {
+//                     @apply text-red-900;
+//                 }
+
+//                 .app-alert-message {
+//                     @apply text-red-700;
+//                 }
+
+//                 code {
+//                     @apply bg-red-200 text-red-800;
+//                 }
+
+//                 .dark & {
+//                     @apply bg-red-600;
+
+//                     .app-alert-icon {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-title,
+//                     .app-alert-dismiss-button {
+//                         @apply text-white;
+//                     }
+
+//                     .app-alert-message {
+//                         @apply text-red-200;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+.alert {
+    --alert-color: #0284c7;
+    --alert-bg: #f0f9ff;
+    --alert-border: #bae6fd;
+
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    transition: background-color 180ms ease, border-color 180ms ease;
+
+    &.alert-primary {
+        --alert-color: #2563eb;
+        --alert-bg: #eff6ff;
+        --alert-border: #bfdbfe;
+    }
+
+    &.alert-accent {
+        --alert-color: #0d9488;
+        --alert-bg: #f0fdfa;
+        --alert-border: #99f6e4;
+    }
+
+    &.alert-basic {
+        --alert-color: #475569;
+        --alert-bg: #f8fafc;
+        --alert-border: #e2e8f0;
+    }
+
+    &.alert-info {
+        --alert-color: #0284c7;
+        --alert-bg: #f0f9ff;
+        --alert-border: #bae6fd;
+    }
+
+    &.alert-success {
+        --alert-color: #16a34a;
+        --alert-bg: #f0fdf4;
+        --alert-border: #bbf7d0;
+    }
+
+    &.alert-warning {
+        --alert-color: #d97706;
+        --alert-bg: #fffbeb;
+        --alert-border: #fde68a;
+    }
+
+    &.alert-error {
+        --alert-color: #dc2626;
+        --alert-bg: #fef2f2;
+        --alert-border: #fecaca;
+    }
+}
+
+.alert-icon {
+    display: flex;
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    color: var(--alert-color);
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.alert-content {
+    flex: 1;
+    min-width: 0;
+    color: inherit;
+}
+
+.alert-title {
+    margin-bottom: 2px;
+    color: var(--alert-color);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.alert-message {
+    color: inherit;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.alert-close {
+    display: flex;
+    flex: 0 0 24px;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin: -2px -4px 0 0;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--alert-color);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 150ms ease, background-color 150ms ease;
+
+    &:hover {
+        opacity: 1;
+        background: color-mix(in srgb, var(--alert-color) 10%, transparent);
+    }
+
+    svg {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+/* Soft */
+.alert-soft {
+    background: var(--alert-bg);
+    color: color-mix(in srgb, var(--alert-color) 85%, #000);
+}
+
+/* Border */
+.alert-border {
+    border-color: var(--alert-border);
+    background: var(--alert-bg);
+
+    &::before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 3px;
+        border-radius: 12px 0 0 12px;
+        background: var(--alert-color);
+        content: '';
+    }
+}
+
+/* Outline */
+.alert-outline {
+    border-color: var(--alert-border);
+    background: transparent;
+    color: inherit;
+}
+
+/* Fill */
+.alert-fill {
+    border-color: var(--alert-color);
+    background: var(--alert-color);
+    color: white;
+
+    .alert-icon,
+    .alert-title,
+    .alert-close {
+        color: white;
+    }
+
+    .alert-message {
+        color: white;
+        opacity: 0.95;
+    }
+}
+
+:host-context(.dark) {
+    .alert-soft,
+    .alert-border {
+        background: color-mix(in srgb, var(--alert-color) 12%, #111827);
+        color: #e2e8f0;
+    }
+
+    .alert-outline {
+        border-color: color-mix(in srgb, var(--alert-color) 45%, transparent);
+        color: #e2e8f0;
+    }
+
+    .alert-title {
+        color: var(--alert-color);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .alert,
+    .alert-close {
+        transition: none;
+    }
+}
+

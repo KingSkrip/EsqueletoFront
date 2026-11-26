@@ -1,0 +1,331 @@
+import { Injectable } from '@angular/core';
+
+
+import {
+  menuAccesos,
+  menuAdmin,
+  menuAgentes,
+  menuClientes,
+  menuColaborador,
+  menuColaborador_Contraloria,
+  menuColaborador_Coordinador,
+  menuColaborador_Gerente,
+  menuJacobo,
+  menuJaime,
+  menuJefe,
+  menuReporteProd_Jacobo,
+  menuReporteProd_Jefe,
+  menuRh,
+  menuSabu,
+  menuSecurity,
+  menuSuAdmin,
+  menuSuAdmin_Admin,
+  menuSuAdmin_Direccion,
+  menuVentas,
+} from './dataroles/data';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { NavigationItem } from './navigation.types';
+import { RoleEnum, SubRoleEnum } from '../../app/core/roles/dataroles';
+
+@Injectable({ providedIn: 'root' })
+export class AppNavigationStoreService {
+  private _componentRegistry: Map<string, any> = new Map();
+  private _navigationStore: Map<string, NavigationItem[]> = new Map();
+
+  private _onNavigationChanged: BehaviorSubject<{ key: string; navigation: NavigationItem[] }> =
+    new BehaviorSubject<{ key: string; navigation: NavigationItem[] }>({
+      key: '',
+      navigation: [],
+    });
+
+  public onNavigationChanged$: Observable<{ key: string; navigation: NavigationItem[] }> =
+    this._onNavigationChanged.asObservable();
+
+  // -----------------------------------------------------------------------------------------------------
+  // @ Public methods
+  // -----------------------------------------------------------------------------------------------------
+
+  /**
+   * Register navigation component
+   *
+   * @param name
+   * @param component
+   */
+  registerComponent(name: string, component: any): void {
+    this._componentRegistry.set(name, component);
+  }
+
+  /**
+   * Deregister navigation component
+   *
+   * @param name
+   */
+  deregisterComponent(name: string): void {
+    this._componentRegistry.delete(name);
+  }
+
+  /**
+   * Get navigation component from the registry
+   *
+   * @param name
+   */
+  getComponent<T>(name: string): T {
+    return this._componentRegistry.get(name);
+  }
+
+  /**
+   * Store the given navigation with the given key
+   *
+   * @param key
+   * @param navigation
+   */
+  storeNavigation(key: string, navigation: NavigationItem[]): void {
+    this._navigationStore.set(key, navigation);
+
+    // Emitir el cambio con estructura correcta
+    this._onNavigationChanged.next({ key, navigation });
+  }
+  /**
+   * Get navigation from storage by key
+   *
+   * @param key
+   */
+  getNavigation(key: string): NavigationItem[] {
+    return this._navigationStore.get(key) ?? [];
+  }
+
+  /**
+   * Delete the navigation from the storage
+   *
+   * @param key
+   */
+  deleteNavigation(key: string): void {
+    // Check if the navigation exists
+    if (!this._navigationStore.has(key)) {
+      console.warn(`Navigation with the key '${key}' does not exist in the store.`);
+    }
+
+    // Delete from the storage
+    this._navigationStore.delete(key);
+  }
+
+  /**
+   * Utility function that returns a flattened
+   * version of the given navigation array
+   *
+   * @param navigation
+   * @param flatNavigation
+   */
+  getFlatNavigation(
+    navigation: NavigationItem[],
+    flatNavigation: NavigationItem[] = [],
+  ): NavigationItem[] {
+    for (const item of navigation) {
+      if (item.type === 'basic') {
+        flatNavigation.push(item);
+        continue;
+      }
+
+      if (item.type === 'aside' || item.type === 'collapsable' || item.type === 'group') {
+        if (item.children) {
+          this.getFlatNavigation(item.children, flatNavigation);
+        }
+      }
+    }
+
+    return flatNavigation;
+  }
+
+  /**
+   * Utility function that returns the item
+   * with the given id from given navigation
+   *
+   * @param id
+   * @param navigation
+   */
+  getItem(id: string, navigation: NavigationItem[]): NavigationItem | null {
+    for (const item of navigation) {
+      if (item.id === id) {
+        return item;
+      }
+
+      if (item.children) {
+        const childItem = this.getItem(id, item.children);
+
+        if (childItem) {
+          return childItem;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Utility function that returns the item's parent
+   * with the given id from given navigation
+   *
+   * @param id
+   * @param navigation
+   * @param parent
+   */
+  getItemParent(
+    id: string,
+    navigation: NavigationItem[],
+    parent: NavigationItem[] | NavigationItem,
+  ): NavigationItem[] | NavigationItem | null {
+    for (const item of navigation) {
+      if (item.id === id) {
+        return parent;
+      }
+
+      if (item.children) {
+        const childItem = this.getItemParent(id, item.children, item);
+
+        if (childItem) {
+          return childItem;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  //SubRoleEnum
+
+  getNavigationByRole(roleId: number, subRoleId?: number): NavigationItem[] {
+    let navigation: NavigationItem[] = [];
+
+    // 1️⃣ Navegación base por ROL
+    switch (roleId) {
+      case RoleEnum.RH:
+        navigation = menuRh;
+        break;
+
+      case RoleEnum.SUADMIN:
+        // console.log(subRoleId);
+        navigation = menuSuAdmin;
+        break;
+
+      case RoleEnum.ADMIN:
+        navigation = menuAdmin;
+        break;
+
+      case RoleEnum.COLABORADOR:
+        navigation = menuColaborador;
+        break;
+
+      case RoleEnum.CLIENTE:
+        navigation = menuClientes;
+        break;
+
+      case RoleEnum.AGENTE:
+        navigation = menuAgentes;
+        break;
+
+      case RoleEnum.REGISTRO_ACCESOS:
+        navigation = menuAccesos;
+        break;
+
+      case RoleEnum.GUARDIA:
+        navigation = menuSecurity;
+        break;
+        
+      default:
+        navigation = [];
+        break;
+    }
+
+    // 2️⃣ Sobrescribir por SUBROL
+    if (subRoleId) {
+      switch (subRoleId) {
+        case SubRoleEnum.JEFE:
+          navigation = menuJefe;
+          break;
+
+        case SubRoleEnum.JAIME:
+          navigation = menuJaime;
+          break;
+
+        case SubRoleEnum.SABU:
+          navigation = menuSabu;
+          break;
+
+        case SubRoleEnum.JACOBO:
+          navigation = menuJacobo;
+          break;
+
+        case SubRoleEnum.ADMIN:
+          navigation = menuSuAdmin_Admin;
+          break;
+
+        case SubRoleEnum.VENTAS:
+          navigation = menuVentas;
+          break;
+
+        case SubRoleEnum.GERENTE:
+          navigation = menuColaborador_Gerente;
+          break;
+
+        case SubRoleEnum.DIRECCION:
+          navigation = menuSuAdmin_Direccion;
+          break;
+
+        case SubRoleEnum.CONTRALORIA:
+          navigation = menuColaborador_Contraloria;
+          break;
+
+        case SubRoleEnum.COORDINADOR:
+          navigation = menuColaborador_Coordinador;
+          break;
+
+        // futuros subroles aquí
+      }
+    }
+
+    // 3️⃣ Seguridad
+    if (!Array.isArray(navigation)) {
+      console.error('Navigation inválida', { roleId, subRoleId });
+      return [];
+    }
+
+    return [...navigation];
+  }
+
+  getReportProdNavigation(roleId: number, subRoleId?: number): NavigationItem[] {
+    const isJefe = subRoleId === SubRoleEnum.JEFE;
+    const isJacobo = subRoleId === SubRoleEnum.JACOBO;
+    const isVentas = subRoleId === SubRoleEnum.VENTAS;
+    const isAdmin = subRoleId === SubRoleEnum.ADMIN;
+    const isJaime = subRoleId === SubRoleEnum.JAIME;
+    const isSabu = subRoleId === SubRoleEnum.SABU;
+    const isDireccion = subRoleId === SubRoleEnum.DIRECCION;
+    const isGerente = subRoleId === SubRoleEnum.GERENTE;
+    const isContraloria = subRoleId === SubRoleEnum.CONTRALORIA;
+    const isCoordinador = subRoleId === SubRoleEnum.COORDINADOR;
+
+    const isSuadmin = roleId === RoleEnum.SUADMIN;
+    const isAgente = roleId === RoleEnum.AGENTE;
+    const isColaborador = roleId === RoleEnum.COLABORADOR;
+
+    if (isSuadmin && isJacobo) {
+      return [...menuReporteProd_Jacobo];
+    } else if (
+      (isSuadmin && isJefe) ||
+      (isAgente && isVentas) || // ✅ ya está
+      (isSuadmin && isAdmin) ||
+      (isSuadmin && isSabu) ||
+      (isSuadmin && isJaime) ||
+      (isDireccion && isColaborador) ||
+      (isGerente && isColaborador) ||
+      (isContraloria && isColaborador) ||
+      (isJefe && isColaborador) ||
+      (isCoordinador && isColaborador) ||
+      isSuadmin
+    ) {
+      return [...menuReporteProd_Jefe];
+    }
+
+    return [];
+  }
+}

@@ -1,13 +1,145 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>CheckGuardFront</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>Check-Guard | Control de Rondines y Seguridad</title>
+
+        <meta
+            name="description"
+            content="Check-Guard: sistema integral de supervisión de guardias de seguridad, control de rondines, validación de puntos de vigilancia y registro de recorridos."
+        />
+
+        <meta
+            name="keywords"
+            content="Check-Guard, seguridad privada, control de guardias, rondines de seguridad, recorridos de vigilancia, puntos de control, supervisión de guardias, registro de rondines, control de acceso"
+        />
+
+        <meta name="author" content="Check-Guard" />
+        <meta name="application-name" content="Check-Guard" />
+        <meta name="theme-color" content="#0f172a" />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        />
+
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Check-Guard" />
+
+        <base href="/" />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="favicon-32x32.png" />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+        <!-- Material Icons -->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.webmanifest" />
+
+        <!-- Global viewport restrictions -->
+        <style>
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                min-height: 100%;
+                margin: 0;
+                padding: 0;
+
+                overflow: hidden !important;
+                overscroll-behavior: none;
+
+                touch-action: pan-x pan-y;
+            }
+
+            body {
+                position: fixed;
+                inset: 0;
+                max-width: 100vw;
+                max-height: 100dvh;
+            }
+
+            app-root {
+                display: block;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            /* Disable double-tap zoom */
+            * {
+                touch-action: manipulation;
+            }
+
+            @keyframes cg-spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+
+    <body class="mat-typography">
+        <app-root>
+            <!-- Initial loading -->
+            <div
+                style="
+                    min-height: 100dvh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    gap: 16px;
+                    background: #0f172a;
+                    color: #ffffff;
+                    font-family: Inter, sans-serif;
+                "
+            >
+                <div
+                    style="
+                        width: 48px;
+                        height: 48px;
+                        border: 4px solid #334155;
+                        border-top-color: #22d3ee;
+                        border-radius: 50%;
+                        animation: cg-spin 0.8s linear infinite;
+                    "
+                ></div>
+
+                <div style="text-align: center">
+                    <div style="font-size: 22px; font-weight: 800; letter-spacing: 2px">
+                        CHECK-GUARD
+                    </div>
+
+                    <div style="margin-top: 6px; color: #94a3b8; font-size: 12px">
+                        Inicializando sistema de seguridad...
+                    </div>
+                </div>
+            </div>
+        </app-root>
+    </body>
 </html>

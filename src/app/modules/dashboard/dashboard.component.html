@@ -1,0 +1,236 @@
+<section class="min-h-full w-full bg-gray-50 p-4 text-gray-900 dark:bg-dark-900 dark:text-gray-100 sm:p-6 lg:p-8">
+    <div class="mx-auto max-w-screen-2xl space-y-6">
+
+        <!-- ============ ENCABEZADO ============ -->
+        <header class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+                <div class="mb-2 inline-flex items-center gap-2 rounded-full bg-success-500/10 px-2.5 py-1 text-xs font-medium text-success-700 dark:text-success-400">
+                    <span class="h-2 w-2 animate-pulse rounded-full bg-success-500"></span>
+                    Operación en vivo
+                </div>
+                <h1 class="font-display text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ pageTitle }}</h1>
+                <p class="mt-1 max-w-xl text-gray-500 dark:text-gray-400">{{ pageDescription }}</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="inline-flex rounded-lg border border-gray-200 bg-white p-0.5 text-sm dark:border-dark-400 dark:bg-dark-700">
+                    <button type="button" class="rounded-md bg-primary-500 px-3 py-1.5 font-medium text-white">Hoy</button>
+                    <button type="button" class="rounded-md px-3 py-1.5 font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">7 días</button>
+                    <button type="button" class="rounded-md px-3 py-1.5 font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">30 días</button>
+                </div>
+
+                <button type="button" class="rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-500 dark:border-dark-400 dark:bg-dark-700 dark:text-gray-200 dark:hover:bg-dark-500">
+                    Exportar
+                </button>
+                <button type="button" class="rounded-lg bg-primary-500 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500">
+                    Nuevo registro
+                </button>
+            </div>
+        </header>
+
+        <!-- ============ INDICADORES (datos de muestra) ============ -->
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+            <article class="rounded-xl border border-gray-200 bg-white p-5 dark:border-dark-400 dark:bg-dark-700">
+                <div class="flex items-start justify-between">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-500/10 text-primary-600 dark:text-primary-400">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                    </span>
+                    <span class="rounded-full bg-success-500/10 px-2 py-0.5 text-xs font-medium text-success-700 dark:text-success-400">+4,2%</span>
+                </div>
+                <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">Turnos activos</p>
+                <div class="mt-1 flex items-end justify-between">
+                    <strong class="font-display text-3xl font-semibold">128</strong>
+                    <svg viewBox="0 0 80 24" fill="none" class="h-8 w-20 text-primary-500"><polyline points="0,18 10,14 20,16 30,9 40,12 50,6 60,8 70,3 80,5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </article>
+
+            <article class="rounded-xl border border-gray-200 bg-white p-5 dark:border-dark-400 dark:bg-dark-700">
+                <div class="flex items-start justify-between">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary-500/10 text-secondary-600 dark:text-secondary-300">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19a4 4 0 00-8 0"/><circle cx="11" cy="8" r="3"/><path d="M21 19a4 4 0 00-3-3.9M17 5.2a3 3 0 010 5.6"/></svg>
+                    </span>
+                    <span class="rounded-full bg-success-500/10 px-2 py-0.5 text-xs font-medium text-success-700 dark:text-success-400">+1,8%</span>
+                </div>
+                <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">Personal en servicio</p>
+                <div class="mt-1 flex items-end justify-between">
+                    <strong class="font-display text-3xl font-semibold">412</strong>
+                    <svg viewBox="0 0 80 24" fill="none" class="h-8 w-20 text-secondary-500"><polyline points="0,14 10,16 20,11 30,13 40,8 50,10 60,6 70,7 80,4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </article>
+
+            <article class="rounded-xl border border-gray-200 bg-white p-5 dark:border-dark-400 dark:bg-dark-700">
+                <div class="flex items-start justify-between">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-warning-500/10 text-warning-600 dark:text-warning-400">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+                    </span>
+                    <span class="rounded-full bg-success-500/10 px-2 py-0.5 text-xs font-medium text-success-700 dark:text-success-400">-12%</span>
+                </div>
+                <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">Incidencias abiertas</p>
+                <div class="mt-1 flex items-end justify-between">
+                    <strong class="font-display text-3xl font-semibold">23</strong>
+                    <svg viewBox="0 0 80 24" fill="none" class="h-8 w-20 text-warning-500"><polyline points="0,5 10,8 20,6 30,12 40,10 50,15 60,13 70,18 80,16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </article>
+
+            <article class="rounded-xl border border-gray-200 bg-white p-5 dark:border-dark-400 dark:bg-dark-700">
+                <div class="flex items-start justify-between">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 text-accent-700 dark:text-accent-400">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                    </span>
+                    <span class="rounded-full bg-success-500/10 px-2 py-0.5 text-xs font-medium text-success-700 dark:text-success-400">+6,5%</span>
+                </div>
+                <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">Rondines completados</p>
+                <div class="mt-1 flex items-end justify-between">
+                    <strong class="font-display text-3xl font-semibold">86<span class="text-lg text-gray-400">/94</span></strong>
+                    <svg viewBox="0 0 80 24" fill="none" class="h-8 w-20 text-accent-500"><polyline points="0,16 10,13 20,14 30,9 40,11 50,7 60,9 70,4 80,3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </article>
+        </div>
+
+        <!-- ============ GRÁFICA + COBERTURA ============ -->
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+
+            <article class="rounded-xl border border-gray-200 bg-white p-5 dark:border-dark-400 dark:bg-dark-700 lg:col-span-2">
+                <header class="mb-6 flex items-start justify-between gap-4">
+                    <div>
+                        <h2 class="text-base font-semibold text-gray-900 dark:text-white">Incidencias por día</h2>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Últimos 7 días · 318 registradas</p>
+                    </div>
+                    <span class="inline-flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                        <span class="h-2.5 w-2.5 rounded-sm bg-primary-500"></span> Registradas
+                        <span class="ml-2 h-2.5 w-2.5 rounded-sm bg-accent-400"></span> Día pico
+                    </span>
+                </header>
+
+                <div class="relative h-56">
+                    <!-- Líneas guía -->
+                    <div class="absolute inset-x-0 top-0 h-[calc(100%-1.75rem)]">
+                        <div class="absolute inset-x-0 top-0 border-t border-dashed border-gray-200 dark:border-dark-400"></div>
+                        <div class="absolute inset-x-0 top-1/3 border-t border-dashed border-gray-200 dark:border-dark-400"></div>
+                        <div class="absolute inset-x-0 top-2/3 border-t border-dashed border-gray-200 dark:border-dark-400"></div>
+                        <div class="absolute inset-x-0 bottom-0 border-t border-gray-200 dark:border-dark-400"></div>
+                    </div>
+
+                    <div class="relative flex h-full items-stretch gap-3 sm:gap-5">
+                        <div class="flex flex-1 flex-col justify-end gap-2"><div class="flex flex-1 items-end"><div class="w-full rounded-t-md bg-primary-500/80" style="height:59%"></div></div><span class="h-5 text-center text-xs text-gray-500">Lun</span></div>
+                        <div class="flex flex-1 flex-col justify-end gap-2"><div class="flex flex-1 items-end"><div class="w-full rounded-t-md bg-primary-500/80" style="height:82%"></div></div><span class="h-5 text-center text-xs text-gray-500">Mar</span></div>
+                        <div class="flex flex-1 flex-col justify-end gap-2"><div class="flex flex-1 items-end"><div class="w-full rounded-t-md bg-primary-500/80" style="height:51%"></div></div><span class="h-5 text-center text-xs text-gray-500">Mié</span></div>
+                        <div class="flex flex-1 flex-col justify-end gap-2"><div class="flex flex-1 items-end"><div class="w-full rounded-t-md bg-accent-400" style="height:100%"></div></div><span class="h-5 text-center text-xs font-medium text-gray-900 dark:text-white">Jue</span></div>
+                        <div class="flex flex-1 flex-col justify-end gap-2"><div class="flex flex-1 items-end"><div class="w-full rounded-t-md bg-primary-500/80" style="height:69%"></div></div><span class="h-5 text-center text-xs text-gray-500">Vie</span></div>
+                        <div class="flex flex-1 flex-col justify-end gap-2"><div class="flex flex-1 items-end"><div class="w-full rounded-t-md bg-primary-500/80" style="height:39%"></div></div><span class="h-5 text-center text-xs text-gray-500">Sáb</span></div>
+                        <div class="flex flex-1 flex-col justify-end gap-2"><div class="flex flex-1 items-end"><div class="w-full rounded-t-md bg-primary-500/80" style="height:48%"></div></div><span class="h-5 text-center text-xs text-gray-500">Dom</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="rounded-xl border border-gray-200 bg-white p-5 dark:border-dark-400 dark:bg-dark-700">
+                <header class="mb-4">
+                    <h2 class="text-base font-semibold text-gray-900 dark:text-white">Cobertura de turnos</h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Posiciones cubiertas hoy</p>
+                </header>
+
+                <div class="relative mx-auto h-40 w-40">
+                    <svg viewBox="0 0 36 36" class="h-full w-full -rotate-90" fill="none" stroke-width="4">
+                        <circle cx="18" cy="18" r="15.9155" class="stroke-gray-100 dark:stroke-dark-400"/>
+                        <circle cx="18" cy="18" r="15.9155" class="stroke-primary-500" stroke-dasharray="86 14" stroke-dashoffset="0"/>
+                        <circle cx="18" cy="18" r="15.9155" class="stroke-warning-500" stroke-dasharray="9 91" stroke-dashoffset="-87"/>
+                        <circle cx="18" cy="18" r="15.9155" class="stroke-danger-500" stroke-dasharray="3 97" stroke-dashoffset="-97"/>
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <strong class="font-display text-3xl font-semibold">87%</strong>
+                        <span class="text-xs text-gray-500 dark:text-gray-400">cubierto</span>
+                    </div>
+                </div>
+
+                <ul class="mt-5 space-y-2 text-sm">
+                    <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-primary-500"></span><span class="flex-1">Cubiertas</span><span class="font-medium tabular-nums">112</span></li>
+                    <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-warning-500"></span><span class="flex-1">Por cubrir</span><span class="font-medium tabular-nums">12</span></li>
+                    <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-danger-500"></span><span class="flex-1">Sin personal</span><span class="font-medium tabular-nums">4</span></li>
+                </ul>
+            </article>
+        </div>
+
+        <!-- ============ TABLA + RONDINES ============ -->
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+
+            <article class="rounded-xl border border-gray-200 bg-white dark:border-dark-400 dark:bg-dark-700 lg:col-span-2">
+                <header class="flex items-center justify-between p-5 pb-3">
+                    <h2 class="text-base font-semibold text-gray-900 dark:text-white">Incidencias recientes</h2>
+                    <a href="javascript:void(0)" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-400">Ver todas</a>
+                </header>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-[34rem] text-left text-sm">
+                        <thead class="border-y border-gray-200 bg-gray-50 text-xs text-gray-500 dark:border-dark-400 dark:bg-dark-600 dark:text-gray-400">
+                            <tr>
+                                <th class="px-5 py-2.5 font-medium">Folio</th>
+                                <th class="px-5 py-2.5 font-medium">Incidencia</th>
+                                <th class="px-5 py-2.5 font-medium">Sitio</th>
+                                <th class="px-5 py-2.5 font-medium">Estado</th>
+                                <th class="px-5 py-2.5 text-right font-medium">Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 dark:divide-dark-400">
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-600">
+                                <td class="px-5 py-3 font-medium tabular-nums">#2041</td>
+                                <td class="px-5 py-3">Acceso no autorizado</td>
+                                <td class="px-5 py-3 text-gray-500 dark:text-gray-400">Planta Norte</td>
+                                <td class="px-5 py-3"><span class="rounded-full bg-danger-500/10 px-2 py-0.5 text-xs font-medium text-danger-600 dark:text-danger-400">Abierta</span></td>
+                                <td class="px-5 py-3 text-right tabular-nums text-gray-500 dark:text-gray-400">10:42</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-600">
+                                <td class="px-5 py-3 font-medium tabular-nums">#2040</td>
+                                <td class="px-5 py-3">Cámara sin señal</td>
+                                <td class="px-5 py-3 text-gray-500 dark:text-gray-400">Torre Polanco</td>
+                                <td class="px-5 py-3"><span class="rounded-full bg-warning-500/10 px-2 py-0.5 text-xs font-medium text-warning-700 dark:text-warning-400">En atención</span></td>
+                                <td class="px-5 py-3 text-right tabular-nums text-gray-500 dark:text-gray-400">09:58</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-600">
+                                <td class="px-5 py-3 font-medium tabular-nums">#2039</td>
+                                <td class="px-5 py-3">Relevo de turno tardío</td>
+                                <td class="px-5 py-3 text-gray-500 dark:text-gray-400">Corporativo Reforma</td>
+                                <td class="px-5 py-3"><span class="rounded-full bg-success-500/10 px-2 py-0.5 text-xs font-medium text-success-700 dark:text-success-400">Resuelta</span></td>
+                                <td class="px-5 py-3 text-right tabular-nums text-gray-500 dark:text-gray-400">08:15</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-600">
+                                <td class="px-5 py-3 font-medium tabular-nums">#2038</td>
+                                <td class="px-5 py-3">Puerta de carga abierta</td>
+                                <td class="px-5 py-3 text-gray-500 dark:text-gray-400">Almacén Sur</td>
+                                <td class="px-5 py-3"><span class="rounded-full bg-success-500/10 px-2 py-0.5 text-xs font-medium text-success-700 dark:text-success-400">Resuelta</span></td>
+                                <td class="px-5 py-3 text-right tabular-nums text-gray-500 dark:text-gray-400">07:30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            <article class="rounded-xl border border-gray-200 bg-white p-5 dark:border-dark-400 dark:bg-dark-700">
+                <header class="mb-5">
+                    <h2 class="text-base font-semibold text-gray-900 dark:text-white">Rondines por sitio</h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Avance de hoy</p>
+                </header>
+
+                <ul class="space-y-5">
+                    <li>
+                        <div class="mb-1.5 flex justify-between text-sm"><span>Planta Norte</span><span class="tabular-nums text-gray-500 dark:text-gray-400">22/24</span></div>
+                        <div class="h-2 rounded-full bg-gray-100 dark:bg-dark-400"><div class="h-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" style="width:92%"></div></div>
+                    </li>
+                    <li>
+                        <div class="mb-1.5 flex justify-between text-sm"><span>Corporativo Reforma</span><span class="tabular-nums text-gray-500 dark:text-gray-400">18/20</span></div>
+                        <div class="h-2 rounded-full bg-gray-100 dark:bg-dark-400"><div class="h-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" style="width:90%"></div></div>
+                    </li>
+                    <li>
+                        <div class="mb-1.5 flex justify-between text-sm"><span>Torre Polanco</span><span class="tabular-nums text-gray-500 dark:text-gray-400">15/20</span></div>
+                        <div class="h-2 rounded-full bg-gray-100 dark:bg-dark-400"><div class="h-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" style="width:75%"></div></div>
+                    </li>
+                    <li>
+                        <div class="mb-1.5 flex justify-between text-sm"><span>Almacén Sur</span><span class="tabular-nums text-gray-500 dark:text-gray-400">9/16</span></div>
+                        <div class="h-2 rounded-full bg-gray-100 dark:bg-dark-400"><div class="h-2 rounded-full bg-warning-500" style="width:56%"></div></div>
+                    </li>
+                </ul>
+            </article>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,227 @@
+
+<div class="flex min-h-screen min-w-0 flex-auto flex-col items-center sm:flex-row sm:justify-center">
+
+    <!-- Left section: Unlock form -->
+    <div class="flex min-h-screen w-full items-center justify-center px-4 py-8 sm:w-auto sm:px-8 md:w-1/2 md:justify-end md:px-16">
+
+        <div class="mx-auto w-full max-w-80 sm:mx-0 sm:w-80">
+
+            <!-- Logo -->
+            <div class="w-14">
+                <img
+                    src="images/logo/logo.svg"
+                    alt="Fibrasan"
+                    class="w-full"
+                />
+            </div>
+
+            <!-- Title -->
+            <div class="mt-8 text-4xl font-extrabold leading-tight tracking-tight">
+                Desbloquear sesión
+            </div>
+
+            <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                Tu sesión se ha bloqueado por inactividad.
+            </div>
+
+            <!-- Alert -->
+            @if (showAlert) {
+                <div class="mt-8 flex items-start gap-3 rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-700 dark:border-red-800 dark:bg-red-950/30 dark:text-red-400">
+
+                    <span class="material-icons text-xl">
+                        error_outline
+                    </span>
+
+                    <span>
+                        {{ alertMessage }}
+                    </span>
+
+                </div>
+            }
+
+            <!-- Unlock form -->
+            <form
+                class="mt-8"
+                [formGroup]="unlockSessionForm"
+                (ngSubmit)="unlock()"
+            >
+
+                <!-- Name -->
+                <mat-form-field appearance="outline" class="w-full">
+
+                    <mat-label>Nombre completo</mat-label>
+
+                    <input
+                        matInput
+                        formControlName="name"
+                        autocomplete="off"
+                    />
+
+                </mat-form-field>
+
+                <!-- Password -->
+                <mat-form-field appearance="outline" class="w-full">
+
+                    <mat-label>Contraseña</mat-label>
+
+                    <input
+                        matInput
+                        formControlName="password"
+                        [type]="showPassword ? 'text' : 'password'"
+                        autocomplete="current-password"
+                    />
+
+                    <button
+                        mat-icon-button
+                        matSuffix
+                        type="button"
+                        (click)="showPassword = !showPassword"
+                        [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+                    >
+                        <span class="material-icons">
+                            {{ showPassword ? 'visibility_off' : 'visibility' }}
+                        </span>
+                    </button>
+
+                    @if (
+                        unlockSessionForm.controls.password.hasError('required') &&
+                        unlockSessionForm.controls.password.touched
+                    ) {
+                        <mat-error>
+                            La contraseña es obligatoria.
+                        </mat-error>
+                    }
+
+                </mat-form-field>
+
+                <!-- Submit -->
+                <button
+                    mat-flat-button
+                    type="submit"
+                    class="mt-3 !h-12 w-full !rounded-lg !text-sm !font-semibold"
+                    [disabled]="loading"
+                >
+
+                    @if (loading) {
+                        <mat-spinner diameter="22"></mat-spinner>
+                    } @else {
+                        Desbloquear sesión
+                    }
+
+                </button>
+
+                <!-- Footer -->
+                <div class="mt-8 text-center text-sm font-medium text-gray-500 dark:text-gray-400">
+
+                    <span>¿No eres tú?</span>
+
+                    <a
+                        routerLink="/sign-out"
+                        class="ml-1 font-semibold text-primary-600 hover:underline dark:text-primary-400"
+                    >
+                        Cerrar sesión de {{ name }}
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Right section: Branding -->
+    <div class="relative hidden min-h-screen w-1/2 flex-auto items-center justify-center overflow-hidden bg-primary-600 p-16 lg:px-28 md:flex">
+
+        <!-- Background rings -->
+        <svg
+            class="pointer-events-none absolute inset-0 h-full w-full"
+            viewBox="0 0 960 540"
+            preserveAspectRatio="xMidYMax slice"
+            fill="none"
+        >
+            <g
+                class="text-accent-600 opacity-60"
+                stroke="currentColor"
+                stroke-width="100"
+            >
+                <circle r="234" cx="196" cy="23" />
+                <circle r="234" cx="790" cy="491" />
+            </g>
+        </svg>
+
+        <!-- Background dots -->
+        <svg
+            class="absolute -right-16 -top-16 text-accent-600"
+            viewBox="0 0 220 192"
+            width="220"
+            height="192"
+            fill="none"
+        >
+            <defs>
+                <pattern
+                    id="unlock-background-dots"
+                    x="0"
+                    y="0"
+                    width="20"
+                    height="20"
+                    patternUnits="userSpaceOnUse"
+                >
+                    <rect
+                        width="4"
+                        height="4"
+                        fill="currentColor"
+                    />
+                </pattern>
+            </defs>
+
+            <rect
+                width="220"
+                height="192"
+                fill="url(#unlock-background-dots)"
+            />
+        </svg>
+
+        <!-- Branding content -->
+        <div class="relative z-10 w-full max-w-2xl">
+
+            <div class="text-5xl font-extrabold leading-tight text-white lg:text-7xl">
+
+                <div>Bienvenido a</div>
+
+                <div>
+                    Comercializadora Fibrasan
+                </div>
+
+            </div>
+
+            <div class="mt-6 text-lg leading-7 tracking-tight text-white">
+
+                <p>
+                    Sistema integral para la gestión de telas y operaciones comerciales.
+                </p>
+
+                <p class="mt-3">
+                    Especialistas en telas de tejido de punto de alta calidad.
+                </p>
+
+                <p class="mt-3">
+                    Hecho en México · Fabricación nacional.
+                </p>
+
+            </div>
+
+            <!-- Slogan -->
+            <div class="mt-10 border-l-4 border-accent-500 pl-5">
+
+                <p class="text-xl font-semibold italic text-white">
+                    La tradición textil que viste el futuro.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

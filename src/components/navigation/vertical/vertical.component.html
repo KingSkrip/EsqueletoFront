@@ -1,0 +1,100 @@
+<div class="app-vertical-navigation-wrapper">
+    <!-- Header -->
+    <div class="app-vertical-navigation-header">
+        <ng-content select="[appVerticalNavigationHeader]"></ng-content>
+    </div>
+
+    <!-- Content -->
+    <div
+        class="app-vertical-navigation-content"
+        [style.overscroll-behavior]="inner ? 'auto' : 'contain'"
+        #navigationContent
+    >
+        <!-- Content header -->
+        <div class="app-vertical-navigation-content-header">
+            <ng-content select="[appVerticalNavigationContentHeader]"></ng-content>
+        </div>
+
+        <!-- Items -->
+        @for (item of navigation; track trackByFn($index, item)) {
+            <!-- Skip the hidden items -->
+            @if (!item.hidden || !item.hidden(item)) {
+                @switch (item.type) {
+                    @case ('aside') {
+                        <app-vertical-navigation-aside-item
+                            [item]="item"
+                            [name]="name"
+                            [activeItemId]="activeAsideItemId"
+                            [autoCollapse]="autoCollapse"
+                            [skipChildren]="true"
+                            (click)="toggleAside(item)"
+                        ></app-vertical-navigation-aside-item>
+                    }
+                    @case ('basic') {
+                        <app-vertical-navigation-basic-item
+                            [item]="item"
+                            [name]="name"
+                        ></app-vertical-navigation-basic-item>
+                    }
+                    @case ('collapsable') {
+                        <app-vertical-navigation-collapsable-item
+                            [item]="item"
+                            [name]="name"
+                            [autoCollapse]="autoCollapse"
+                        ></app-vertical-navigation-collapsable-item>
+                    }
+                    @case ('divider') {
+                        <app-vertical-navigation-divider-item
+                            [item]="item"
+                            [name]="name"
+                        ></app-vertical-navigation-divider-item>
+                    }
+                    @case ('group') {
+                        <app-vertical-navigation-group-item
+                            [item]="item"
+                            [name]="name"
+                            [autoCollapse]="autoCollapse"
+                        ></app-vertical-navigation-group-item>
+                    }
+                    @case ('spacer') {
+                        <app-vertical-navigation-spacer-item
+                            [item]="item"
+                            [name]="name"
+                        ></app-vertical-navigation-spacer-item>
+                    }
+                }
+            }
+        }
+
+        <!-- Content footer -->
+        <div class="app-vertical-navigation-content-footer">
+            <ng-content select="[appVerticalNavigationContentFooter]"></ng-content>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="app-vertical-navigation-footer">
+        <ng-content select="[appVerticalNavigationFooter]"></ng-content>
+    </div>
+</div>
+
+<!-- Aside -->
+@if (activeAsideItemId) {
+    <div
+        class="app-vertical-navigation-aside-wrapper"
+        [class.aside-position-left]="position === 'left'"
+        [class.aside-position-right]="position === 'right'"
+    >
+        @for (item of navigation; track trackByFn($index, item)) {
+            @if (!item.hidden || !item.hidden(item)) {
+                @if (item.type === 'aside' && item.id === activeAsideItemId) {
+                    <app-vertical-navigation-aside-item
+                        [item]="item"
+                        [name]="name"
+                        [autoCollapse]="autoCollapse"
+                    ></app-vertical-navigation-aside-item>
+                }
+            }
+        }
+    </div>
+}
